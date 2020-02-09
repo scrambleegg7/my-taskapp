@@ -8,9 +8,11 @@ const ProjectList = ( { projects } ) => (
         {/* projects is neccesaary to checkout existence of the array. */}
         {projects && projects.map( project => {
             return(
+                <div key={project.id}>
                 <Link to={'/project/' + project.id  }>
-                    <ProjectSummary project={project} key={project.id} />
+                    <ProjectSummary project={project} key= {project.id} />
                 </Link>
+                </div>
             )
 
         })}
