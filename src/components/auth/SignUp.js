@@ -40,7 +40,9 @@ class SignUp extends Component {
 
     render() {
         const { auth, authError } = this.props;
-        if (auth.uid) return <Redirect to='/' />
+
+        
+        if (auth.uid && auth.emailVerified) return <Redirect to='/' />
 
         
         const isInValid = this.state.password !== this.state.password2;

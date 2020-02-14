@@ -36,6 +36,7 @@ export const signUp = (newUser) => {
 
         const firebase = getFirebase();
         const firestore = getFirestore();
+        const REACT_APP_CONFIRMATION_EMAIL_REDIRECT = "http://localhost:3000"
 
         firebase.auth().createUserWithEmailAndPassword(
             newUser.email,
@@ -50,9 +51,21 @@ export const signUp = (newUser) => {
                 isAdmin: newUser.isAdmin,
             }) 
         })
-        .then(() => {
-            return firebase.doSendEmailVerification();
-          })
+        .then( () => {
+
+            const user = firebase.auth().currentUser;
+            firebase.auth().languageCode = 'ja';
+            
+            user.sendEmailVerification().then(function() {
+                
+                console.log("email verification after sending confirmation message.",user.emailVerified)
+                alert("send confirmation message..")
+
+              }).catch(function(error) {
+                alert("Error happened", error)
+              });
+            
+        })
         .then(() => {
             dispatch( { type: 'SIGNUP_SUCCESS' } );
         })
