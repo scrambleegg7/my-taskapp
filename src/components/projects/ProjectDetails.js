@@ -26,7 +26,7 @@ const ProjectDetails = (props) => {
                 </div>
                 <div className="card-action grey lighten-4 grey-text">
                 <div>Posted by {project.authorFirstName } {project.authorLastName }  </div>
-                <div> { moment(  project.createdAt.toDate().toString() ).calendar()  }  </div>
+                <div> { moment(  project.createdAt.toDate().toISOString() ).format("YYYY-MMM-DD")  }  </div>
                 </div>
             </div>
             </div>

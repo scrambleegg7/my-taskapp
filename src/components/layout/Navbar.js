@@ -17,7 +17,7 @@ const Navbar= (props) => {
     <nav className="nav-wrapper grey darken-3">
         <div className="container">
 
-            <Link to="/" className="brand-logo">myTaskApp Link </Link>
+            <Link to="/" className="brand-logo">お知らせ一覧</Link>
             {links}
         </div>
     </nav>

@@ -5,7 +5,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(/img/mario-bg.png) no-repeat;
   background-size: 100%;
   background-position: bottom;
   background-color: #95e8f3;
@@ -27,9 +26,10 @@ form {
 }
 
 form button, form h5{
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
+input[type=checkbox]:not(.browser-default):focus:not([readonly]),
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
@@ -38,6 +38,7 @@ textarea.materialize-textarea:focus:not([readonly]){
   box-shadow: none;
 }
 
+input[type=checkbox]:not(.browser-default):focus:not([readonly]) + label,
 input[type=text]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label,
 input[type=email]:not(.browser-default):focus:not([readonly]) + label,

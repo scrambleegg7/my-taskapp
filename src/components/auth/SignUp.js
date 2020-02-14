@@ -5,14 +5,17 @@ import { signUp } from '../../store/actions/authActions';
 
 import { Redirect } from 'react-router-dom';
 
+import Checkbox from '@material-ui/core/Checkbox';
 
 class SignUp extends Component {
 
     state = {
         email: '',
         password: '',
+        password2: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        isAdmin: false
     }
 
     handleChange = (e) => {
@@ -23,6 +26,12 @@ class SignUp extends Component {
         )
     }
 
+    handleCheck = (e) => {
+        this.setState({
+            isAdmin: e.target.checked
+        })
+      }    
+
     handleSubmit = (e) => {
         e.preventDefault();
         console.log("SignUp comp this.state on creating user.", this.state);
@@ -32,6 +41,9 @@ class SignUp extends Component {
     render() {
         const { auth, authError } = this.props;
         if (auth.uid) return <Redirect to='/' />
+
+        
+        const isInValid = this.state.password !== this.state.password2;
 
         return (
             <div className="container">
@@ -46,6 +58,10 @@ class SignUp extends Component {
                         <input type="password" id="password" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
+                        <label htmlFor="password2">Password confirmed</label>
+                        <input type="password" id="password2" onChange={this.handleChange} />
+                    </div>
+                    <div className="input-field">
                         <label htmlFor="firstName">FirstName</label>
                         <input type="text" id="firstName" onChange={this.handleChange} />
                     </div>
@@ -53,10 +69,19 @@ class SignUp extends Component {
                         <label htmlFor="lastName">LastName</label>
                         <input type="text" id="lastName" onChange={this.handleChange} />
                     </div>
+                    <div>
+                        <label htmlFor="isAdmin">
+                            <input type="checkbox" id="isAdmin" checked={this.state.isAdmin} onChange={this.handleCheck} />
+                            <span>Administrator ?</span>
+                        </label>
+                    </div>
+
+                    
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">SIGN UP</button>
+                        <button disabled={isInValid}  className="btn blue lighten-1 z-depth-0">SIGN UP</button>
                         <div className="red-text center">{ authError ?  <p>  {authError}  </p> : null      }</div>
                     </div>
+                    
                 </form>
             </div>
         )
