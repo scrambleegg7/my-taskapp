@@ -12,7 +12,7 @@ const Navbar= (props) => {
     console.log("Navbar firebase state props", auth )
     console.log("Navbar firebase firestore profile props", profile )
 
-    const links = auth.uid ? <SignedInLInks profile={profile} /> : <SignedOutLInks />
+    const links = (auth.uid && auth.emailVerified) ? <SignedInLInks profile={profile} /> : <SignedOutLInks />
     return (
     <nav className="nav-wrapper grey darken-3">
         <div className="container">

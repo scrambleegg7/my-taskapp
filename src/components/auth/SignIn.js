@@ -30,7 +30,10 @@ class SignIn extends Component {
     render() {
         //console.log("SignIn props ", this.props)
         const { authError, auth } = this.props;
-        if (auth.uid) return <Redirect to='/' />
+        //alert(JSON.stringify(auth))
+        if (auth.uid && auth.emailVerified) return <Redirect to='/' />
+        if (!!auth.emailVerified && !!auth.isEmpty) return <Redirect to='/emailverification' />
+
 
         return (
             <div className="container">

@@ -17,6 +17,10 @@ class Dashboard extends Component {
         const { projects, auth } = this.props;
 
         if (!auth.uid) return <Redirect to='/signin' />
+        if (!auth.emailVerified) {
+            console.log("Not email confirmed on Dashboard.")
+            return <Redirect to='/signin' />
+        }
 
         return(
             <div className="dashboard container">
